@@ -1,9 +1,9 @@
-import d3 from "d3";
-import c3 from "c3";
-import $ from "jquery";
-require('c3/c3.css')
-global.jQuery = $;
-require("bootstrap-webpack");
+import d3 from 'd3';
+import c3 from 'c3';
+import $ from 'jquery';
+import GraphTable from './components/GraphTable'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 let def = {
     bindto: '#chart',
@@ -32,11 +32,6 @@ $(document).ready(() => {
         });
                 
         const chart = c3.generate(def);
-        def.data.columns[0].forEach((item, index) => {
-            
-            if (index > 0)
-                $('table > tbody').append(`<tr><td>${index}</td><td>${parseInt(item)}</td></tr>`);
-        });
-
+        ReactDOM.render(<GraphTable dataset={def.data.columns[0]}/>, document.getElementById('dtable'))
     });
 });
