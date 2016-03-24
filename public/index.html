@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Big Data</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-unstyled list-inline">
+                        <li>
+                            <label>Reports</label>
+                        </li>
+                        <li>
+                            <form method="post" action="/upload" enctype="multipart/form-data">
+                                <input name="fupload" type="file" id="fupload" value="Upload">
+                            </form>
+                        </li>
+                        <li>
+                            <a href="/random">Random</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <hr/>
+            <div class="row">
+
+                <div id="chart"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Value</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script src="/static/bundle.js"></script>
+</body>
+
+</html>
