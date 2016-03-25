@@ -1,58 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Big Data</title>
-        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="/node_modules/c3/c3.css">
-        <script src="/node_modules/bootstrap/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <header>
-        </header>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="list-unstyled">
-                            <li>
-                                <h4>Reports</h4>
-                            </li>
-                            <li>
-                                <ul class="list-unstyled list-inline">
-                                    <li>
-                                        <form method="post" action="/upload" enctype="multipart/form-data">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Big Data</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/node_modules/c3/c3.css">
+    <script src="/node_modules/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>Reports</h4>
+                        </li>
+                        <li>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <form method="post" action="/upload" enctype="multipart/form-data">
                                         <label>Upload CSV</label>
-                                    <input name="fupload" type="file" id="fupload" value="Upload">
-                                </form>
-                                    </li>
-                                    <li>
-                                <a href="/random">Generate Random dataset</a>
-                            </li>
-                                </ul>
-                                
-                            </li>
-                            
-                        </ul>
-                    </div>
+                                        <input name="fupload" type="file" id="fupload" value="Upload">
+                                    </form>
+                                </li>
+                                <li>
+                                    <a href="#" id="random">Generate Random dataset</a>
+                                </li>
+                            </ul>
 
-                </div>
-                <hr/>
-                <div class="row">
+                        </li>
 
-                    <div id="chart"></div>
+                    </ul>
+                </div>
 
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="dtable"></div>
-                    </div>
-                </div>
             </div>
-        </section>
-        <footer>
-        </footer>
-        <script src="/static/bundle.js"></script>
-    </body>
+            <hr/>
+
+
+
+            <span id="dtable"></span>
+
+        </div>
+    </section>
+    <footer>
+    </footer>
+    <script src="/static/bundle.js"></script>
+</body>
+
 </html>

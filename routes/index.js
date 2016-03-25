@@ -32,7 +32,7 @@ router.get('/random', (req,res) => {
     const limit = Math.floor(Math.random()*300);
     const upper = Math.floor(Math.random()*500);
     dataset = generate(limit, upper).split(',');
-    res.redirect('/');
+    res.status(200).send(dataset); 
 });
 
 router.get('/data', (req, res) => {

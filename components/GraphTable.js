@@ -1,4 +1,6 @@
 import React, {Component, PropTypes} from 'react'
+import c3 from 'c3'
+import $ from 'jquery'
 
 const GraphTableRow = ({rvalue, rindex}) => (
     <tr>
@@ -12,18 +14,108 @@ GraphTableRow.propTypes = {
     rindex: PropTypes.number.isRequired
 }
 
+export class GraphContainer extends Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {data:[]}
+        var self = this
+        $(document).on('refresh', this.randomize.bind(self))
+    }
+    
+    randomize() {
+        $.ajax({
+            url: '/random',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {                
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+            });
+    }
+    
+    componentDidMount() {
+        
+        $.ajax({
+            url: '/data',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {                
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+            });
+            
+    }
+    
+    render() {                                              
+        return (
+            <div>
+                <GraphChart data={this.state.data} />
+                <GraphTable dataset={this.state.data}/>
+            </div>
+        )
+    }
+}
 
-export default class GraphTable extends Component {
+export class GraphChart extends Component {
+    
+    constructor(props) {
+        super(props)    
+        this.state = {chart: undefined}   
+    }
+    
+    componentDidMount() {
+        this.setState({chart:c3.generate(this.graphObject())})        
+    }   
+    
+    componentDidUpdate() {   
+                     
+        this.state.chart.load({
+            columns: [
+                    ['data1', ...this.props.data]
+                ]
+        })
+    }    
+    
+    graphObject() {
+        return {
+            bindto: '#chart',
+            data: {
+                columns: [
+                    ['data1', ...this.props.data]
+                ]
+            }
+        }
+    }
+    
+    render() {        
+                                                 
+        return (
+            <div className="row">
+                <div id="chart">
+                </div>
+            </div>
+       );
+    }
+}
+
+export class GraphTable extends Component {
 
     constructor(props) {
-        super(props);
-        this.state = { dataset: props.dataset }
+        super(props);        
     }
     
     render() {
-        const {dataset} = this.state
-
+        let {dataset} = this.props
         return (
+            <div className="row">
+            <div className="col-md-12">
             <table className="table table-hover">
                 <thead>
                     <tr>
@@ -45,6 +137,8 @@ export default class GraphTable extends Component {
 
                 </tbody>
             </table>
+            </div>
+            </div>
         )
     }
 }
