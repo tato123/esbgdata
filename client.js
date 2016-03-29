@@ -1,25 +1,32 @@
-import d3 from 'd3';
-import c3 from 'c3';
-import $ from 'jquery';
-import {GraphTable, GraphChart, GraphContainer} from './components/GraphTable'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import {render} from 'react-dom'
+import { Provider } from 'react-redux'
+import GraphContainer from './components/Graph/GraphContainer'
+import App from './containers/App'
+import configureStore from './store'
+import {Tabs, Tab, TabHeaderList, TabHeader, TabPanel} from './components/Tabs/Tabs'
 
-ReactDOM.render(
-    
-        <GraphContainer>            
-        </GraphContainer>
-    
-    , 
-document.getElementById('dtable'))
+const store = configureStore()
 
-
-$(document).ready(() => {
-    $('#fupload').change(() => {
-        this.form.submit();
-    });
-    
-    $('#random').click(()=> {
-        $(document).trigger('refresh');
-    })
-});
+render(
+    <Provider store={store}>
+        <App>
+            <Tabs>
+                <TabHeaderList>
+                    <TabHeader title="Graph" id="graph"/>
+                    <TabHeader title="Manage" id="manage"/>
+                </TabHeaderList>
+                <TabPanel>
+                    <Tab id="graph">
+                        <GraphContainer />
+                    </Tab>
+                    <Tab id="manage">
+                        <label>Something here</label>
+                    </Tab>
+                </TabPanel>
+                
+            </Tabs>
+        </App>
+    </Provider>, 
+    document.getElementById('root')
+)
